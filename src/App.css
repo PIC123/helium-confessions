@@ -1,3 +1,42 @@
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(100px, -100px);
+  }
+  50% {
+    transform: translate(200px, 0);
+  }
+  75% {
+    transform: translate(100px, 100px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 .App {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -23,4 +62,71 @@ button:hover {
 
 audio {
   margin-top: 15px;
+}
+
+.circle-button {
+  width: 200px; /* Adjust size as needed */
+  height: 200px; /* Adjust size as needed */
+  background-color: red; /* Red background color */
+  color: white; /* White text color */
+  border: none; /* Remove border */
+  border-radius: 50%; /* Make it circular */
+  font-size: 32px; /* Adjust font size as needed */
+  display: flex; /* Use flexbox for centering */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.circle-button:hover {
+  background-color: darkred; /* Darker red on hover */
+}
+
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; /* Full viewport height */
+}
+
+.pulse {
+  animation: pulse 1s infinite; /* Apply the pulse animation */
+}
+
+.vertical-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem; /* Adjust the gap between elements as needed */
+}
+
+.secret-container {
+  padding: 20px; /* Add padding inside the container */
+  border-radius: 15px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border: 2px solid #e0e0e0; /* Light border */
+  position: relative; /* For positioning pseudo-elements */
+  overflow: hidden; /* Hide overflow for pseudo-elements */
+  animation: bounce 5s infinite, move 10s infinite; /* Apply bounce and move animations */
+}
+
+.secret-container::before,
+.secret-container::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, rgba(255, 0, 0, 0.1), rgba(0, 0, 255, 0.1));
+  mix-blend-mode: multiply;
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: 1; /* Ensure it's above the content */
+}
+
+.secret-container::after {
+  background: linear-gradient(-45deg, rgba(0, 255, 0, 0.1), rgba(255, 255, 0, 0.1));
 }
